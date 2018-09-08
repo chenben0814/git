@@ -1,0 +1,511 @@
+php方面的：
+抽象类接口类问题、关键字和魔术方法问题、curl&fopen系列问题、设计模式（工厂单例）&依赖注入系列问题、php闭包&类型约束问题、正则（必考）
+mysql：
+索引问题（必问），BTREE聚簇索引原理，慢查询解决流程，MySQL配置文件具体参数，主从配置
+Apache：
+Apache配置文件参数问题，fast-cgi，php-fpm相关问题
+linux：
+vi命令类问题（必问），ps，pstree，top，iostatus,netstat,|
+http：
+请求码、http头、长短链接区别、tcp&udp区别
+
+文件上传 php
+错误类型
+值为0：表示没有发生任何错误。
+值为1：表示上传文件的大小超出了约定值。文件大小的最大值是在PHP配置文件中指定的，该指令是：upload_max_filesize。
+值为2：表示上传文件大小超出了HTML表单隐藏域属性的MAX＿FILE＿SIZE元素所指定的最大值。
+值为3：表示文件只被部分上传。
+值为4：表示没有上传任何文件。
+值为6：表示找不到临时文件夹。PHP 4.3.10 和 PHP 5.0.3 引进。
+值为7：表示文件写入失败。PHP 5.1.0 引进。
+上传步骤
+获取$_FILES超全局变量判断是否有值；
+判断错误：$_FILES[‘myfile’][‘error’];
+判断上传文件扩展名是否符合要求：$_FILES[‘myfile’][‘name’]中获取
+判断上传文件大小是否符合要求：$_FILES[‘myfile’][‘size’]单位字节;
+设置保存服务器上的新文件名包含扩展名：date(‘YmdHis’);
+新文件保存位置目录是否存在，不存在需要新建目录：mkdir；
+复制或移动临时文件到指定位置保存：move_uploaded_file ；
+
+文件下载 php
+$filename="./upload/aa.png";
+$basename=pathinfo($filename);
+header("Content-Type: image/png"); //指定下载文件类型的
+header("Content-Disposition:attachment;filename=".$basename["basename"]);
+//指定下载文件的描述信息
+header("Content-Length:".filesize($filename));  //指定文件大小的
+readfile($filename);//将内容输出，以便下载。
+
+curl 图片下载
+$url = 'https://image.hebeos.com/media/catalog/product/7/2/72001-1.jpg';
+    function http_get_data($url) {
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'GET' );
+        curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, false );
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        ob_start ();
+        curl_exec ( $ch );
+        $return_content = ob_get_contents ();
+        ob_end_clean ();
+
+        $return_code = curl_getinfo ( $ch, CURLINFO_HTTP_CODE );
+        return $return_content;
+    }
+    $return_content = http_get_data($url);
+    $filename = 'test.jpg';
+    $fp= @fopen($filename,"a"); //将文件绑定到流 
+    fwrite($fp,$return_content); //写入文件
+
+
+
+Girl Baby = new girl();
+girl.birthday ="20XX/XX/XX 00:00:00";
+girl.Zodiac ="生肖";
+girl.Sex ="female";
+girl.Weight = "/";
+girl.welcomeWord ="Hello World";
+
+Boy Baby = new boy();
+boy.birthday ="20XX/XX/XX 00:00:00";
+boy.Zodiac ="DOG";
+boy.Sex ="male";
+boy.Weight = "/";
+boy.welcomeWord ="Hello World";
+
+我是一只小白
+很多问题搞不明白
+期待大神给我答案
+是我太菜
+还是PHP高峰实在难攀
+谁能给我指南
+想不明白
+想不明白
+
+我是一只小白
+心中有所怀揣
+虽然步履蹒跚
+却又满心期待
+
+我是一只小白
+复杂难题自然无奈
+简单疑问塞满脑袋
+心知止步就会淘汰
+依旧努力追寻答案
+或勤奋 或慵懒
+必将迎来精彩
+
+
+单向的爱情
+混乱两人的世界
+你爱他 他爱她
+谁爱我
+　　我在你心中总是路过
+　　连作梦都嫌太沉重
+单向的爱情
+注定两人的暧昧
+雨是雨 或是泪
+又如何
+    最是那不经意的抬眸
+    确认过眼神
+    你就是我想追的人
+
+你是无意穿堂风，偏偏孤倨引山洪
+对酒当歌 亦躲不过四下无人的夜
+
+这个世界上有两个东西不能直视，一个是太阳，一个是人心。
+
+
+我确实真诚地喜欢过你，想过带你去看每年故宫的初雪，阿拉斯加的海岸线，我曾愿意与你两人独占一江秋，愿意与你郡亭枕上看潮头，铺着红地毯的礼堂，暮霭沉沉的原野，我都曾愿与你共享，我想象过和你一起生活，直到白发苍苍垂垂老矣，同枕共穴，至死不休。
+可我现在也确实不喜欢你了，车站年久失修，江南的砖瓦裂了缝，当初不撞南墙不回头的热血已然冷却。抱歉啦，我们就此别过吧，我的喜欢要给别的姑娘啦。 此生勿复见，山水不相逢。
+
+
+夜已深，天微凉，路过小巷见女郎
+衣甚薄，瑟瑟风中抖
+起爱心，施两百
+其感恩，拽屋内，更怜爱
+遂生情，云雨三刻
+觉不爱，把家还
+
+十年一轮回
+
+十年磨一剑 一朝试锋芒
+回首十八岁 追梦少年郎
+
+我相信  在这个世界杯期间
+各大城市的人
+会四处约好友  借着看球的名义
+一起喝酒一起吃肉
+酒足肉饱后，返回各自庸碌的生活
+也许这就是无趣人生的最后底线吧
+
+地狱空荡荡 恶魔在人间
+
+见字如见人，多想遇见你
+
+风陵渡口初相遇
+
+自古表白多白表，从来姻缘没原因。笑叹少年多年少，哪知自负终负自。悠长情书难书情，惨遭拒绝成绝句。纵使往事皆失望，他朝逢春沐春风。不惧历练结连理，一旦爱久忘旧爱。空慕道德欲得道，怎知俗世多世俗。莫忆青年悔年轻，唯与生人道人生.
+
+
+我知道减肥很重要，但是火锅真的好好吃啊
+我知道胖子没有未来，但是活在当下太爽了啊
+这个世界上没有人不想成为更优秀的自己。
+但也不是所有人，都一定要成为那个更好的自己。
+你觉得现在挺好的，就不要在意别人是怎么评价的。
+
+我发现人好奇心最强的时候是遇到前面司机瞎开的时候，超车时无一例外都会扭头看看究竟是哪个傻逼在开
+
+‘理论’是你知道是这样，但它却不好用。
+‘实践’是它很好用，但你不知道是为什么。
+程序员将理论和实践结合到一起：既不好用，也不知道是为什么。
+
+世事茫茫，光阴有限，算来何必奔忙！人生碌碌，竞短论长，却不道荣枯有数，得失难量。看那秋风金谷，夜月乌江，阿房宫冷，铜雀台荒。荣华花上露，富贵草头霜。机关参透，万虑皆忘。夸什么龙楼凤阁，说什么利锁名缰。闲来静处，且将诗酒猖狂。唱一曲归来未晚，歌一调湖海茫茫。逢时遇景，拾翠寻芳，约几个知心密友，到野外溪旁。或琴棋适性，或曲水流觞，或说些善因果报，或论些今古兴亡。看花枝堆锦绣，听鸟语弄笙簧。一任他人情反复，世态炎凉。优游闲岁月，潇洒度时光。
+
+
+夜阑卧听风吹雨，铁马是你，冰河也是你。
+唯是相君忘未得，汉水是你，巴山也还是你。
+
+https://www.visualstudio.com/downloads/ visual basic 下载
+
+https://docs.microsoft.com/zh-cn/visualstudio/ide/visual-studio-ide
+https://docs.microsoft.com/zh-cn/dotnet/visual-basic/
+https://blog.csdn.net/baimafujinji/article/details/72456826?locationNum=2&fps=1
+
+http://www.adminarsenal.com/admin-arsenal-blog/secure-password-with-powershell-encrypting-credentials-part-1/
+
+
+http://www.freesshd.com/freeSSHd.exe
+安装Win32 OpenSSH
+https://github.com/PowerShell/Win32-OpenSSH/wiki/Install-Win32-OpenSSH
+powershell下运行 安装与卸载
+
+支付宝支付
+https://blog.csdn.net/weixin_39768635/article/details/78081570
+
+
+https://www.cnblogs.com/Kevin00/p/6349301.html
+http://blog.sina.com.cn/s/blog_9f8ffdaf0102wh1v.html
+https://wenku.baidu.com/view/ff9633b5aaea998fcc220ee4.html
+https://www.cnblogs.com/Kevin00/p/6341295.html
+
+json 用法
+json_encode($arr,JSON_UNESCAPED_UNICODE);转化为json 且不转化中文
+json_decode($json);转化为对象
+json_decode($json,true);转化为数组
+
+
+AMP
+amp-example
+https://ampbench.appspot.com/
+amp-validator 测试页面
+https://validator.ampproject.org/
+
+The following are a few AMP Compatible JSON Reference links.
+https://www.ampproject.org/docs/reference/components/amp-list
+https://ampbyexample.com/components/amp-list/
+https://www.ampproject.org/docs/fundamentals/amp-cors-requests
+Example
+{"items":[{"values":[{"above_title":"Colección Especial","title":"Grandes Éxitos Bodeboca","description":"\u003cp\u003eLas sensaciones del \u0026uacute;ltimo a\u0026ntilde;o\u003c/p\u003e\n","bannerimage":"https://www.bodeboca.com/sites/default/files/bigbanner-grandesexitos2.jpg","button_text":"Ver","web_url":"https://www.bodeboca.com/grandes-exitos-bodeboca"},{"above_title":"Ahora en Venta Privada","title":"Pagos de Valcerracín","description":"\u003cp\u003eVinos de Ribera del Duero vers\u0026aacute;tiles y f\u0026aacute;ciles de beber\u003c/p\u003e\n","bannerimage":"https://www.bodeboca.com/sites/default/files/bigbanner-valcerracin.jpg","button_text":"Ver","web_url":"https://www.bodeboca.com/venta-privada-vino/pagos-valcerracin"},{"above_title":"Ahora en Venta Privada","title":"Pazo Casanova","description":"\u003cp\u003eEl Ribeiro que nos enamora vuelve para repetir haza\u0026ntilde;a\u003c/p\u003e\n","bannerimage":"https://www.bodeboca.com/sites/default/files/bigbanner-casanova.jpg","button_text":"Ver","web_url":"https://www.bodeboca.com/venta-privada-vino/pazo-casanova-0"},{"above_title":"Ahora en Venta Privada","title":"La Guita","description":"\u003cp\u003eEs sencillamente muy Sanl\u0026uacute;car\u003c/p\u003e\n","bannerimage":"https://www.bodeboca.com/sites/default/files/bigbanner-laguita.jpg","button_text":"Ver","web_url":"https://www.bodeboca.com/venta-privada-vino/la-guita"},{"above_title":"Colección Especial","title":"Un paseo por el Ródano","description":"\u003cp\u003eLos mejores vinos de esta regi\u0026oacute;n con hasta el 20% dto.\u003c/p\u003e\n","bannerimage":"https://www.bodeboca.com/sites/default/files/bigbanner-rodano.jpg","button_text":"Ver","web_url":"https://www.bodeboca.com/rodano"}]}]}
+Array (
+[items] => Array (
+    [0] => Array (
+        [values] => Array (
+            [0] => Array (
+                [above_title] => Colección Especial
+                [title] => Grandes Éxitos Bodeboca
+                [description] =>Las sensaciones del último año
+                [bannerimage] => https://www.bodeboca.com/sites/default/files/bigbanner-grandesexitos2.jpg
+                [button_text] => Ver
+                [web_url] => https://www.bodeboca.com/grandes-exitos-bodeboca )
+            [1] => Array (
+                [above_title] => Ahora en Venta Privada
+                [title] => Pagos de Valcerracín
+                [description] =>Vinos de Ribera del Duero versátiles y fáciles de beber
+                [bannerimage] => https://www.bodeboca.com/sites/default/files/bigbanner-valcerracin.jpg
+                [button_text] => Ver
+                [web_url] => https://www.bodeboca.com/venta-privada-vino/pagos-valcerracin )
+            [2] => Array (
+                [above_title] => Ahora en Venta Privada
+                [title] => Pazo Casanova
+                [description] =>El Ribeiro que nos enamora vuelve para repetir hazaña
+                [bannerimage] => https://www.bodeboca.com/sites/default/files/bigbanner-casanova.jpg
+                [button_text] => Ver
+                [web_url] => https://www.bodeboca.com/venta-privada-vino/pazo-casanova-0
+            )
+            [3] => Array (
+                [above_title] => Ahora en Venta Privada
+                [title] => La Guita
+                [description] =>Es sencillamente muy Sanlúcar
+                [bannerimage] => https://www.bodeboca.com/sites/default/files/bigbanner-laguita.jpg
+                [button_text] => Ver
+                [web_url] => https://www.bodeboca.com/venta-privada-vino/la-guita
+            )
+            [4] => Array (
+                [above_title] => Colección Especial
+                [title] => Un paseo por el Ródano
+                [description] =>Los mejores vinos de esta región con hasta el 20% dto.
+                [bannerimage] => https://www.bodeboca.com/sites/default/files/bigbanner-rodano.jpg
+                [button_text] => Ver
+                [web_url] => https://www.bodeboca.com/rodano )
+            )
+        )
+    )
+)
+
+
+Google Analytics and Google Tag Manager can be integrated with the AMP page. Please refer to the following articles for more information:
+GA and GTM on AMP
+AMP analytics
+AMP Analytics Vendors
+
+IP  :   103.212.223.154
+SM  :   255.255.255.192
+GW  :   103.212.223.129
+
+ID  :   administrator
+PW  :   dirksrmsan135$@
+
+
+hao.wsteco.com 账号管理
+admin fhjonuipmjkqz
+my.hao.wsteco.com 远程登录
+guac001  /  dKKIoaTlsbda&J77
+guacadmin  /  dKKIoaTlsbda&J77
+
+info.cern.ch  万维网1989 first-website   Tim Berners-Lee
+
+
+----快速检索----
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+<link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+    $(function(){
+             $( "#card" ).autocomplete({
+                source: "/card.php",
+                minLength: 1,
+            });
+    });
+</script>
+<input type="text" id="card" name="card" class="input-text"  value ="{$Think.get.card}" />
+-----card.php-----
+//1.建立连接
+$connect=mysqli_connect('localhost','root','root','account','3306');
+//2.定义sql语句
+mysqli_query($connect,'set names utf8');
+
+// sleep( 2 );
+// no term passed - just exit early with no response
+if (empty($_GET['term'])) exit ;
+$q = strtoupper($_GET["term"]);
+// remove slashes if they were magically added
+if (get_magic_quotes_gpc()) $q = stripslashes($q);
+
+$sql = 'select card_number from tp_card where card_number like "%'.$q.'%"';
+ //3.发送SQL语句
+        $result=mysqli_query($connect,$sql);
+        $items=array();//定义空数组
+        while($row =mysqli_fetch_array($result)){
+            //var_dump($row);
+                //array_push(要存入的数组，要存的值)
+            $items[$row['card_number']] = $row['card_number'] ;
+        }
+
+$result = array();
+foreach ($items as $key=>$value) {
+    if (strpos(strtoupper($key), $q) !== false) {
+        array_push($result, array("id"=>$value, "label"=>$value, "value" => strip_tags($value)));
+    }
+    if (count($result) > 11)
+        break;
+}
+// json_encode is available in PHP 5.2 and above, or you can install a PECL module in earlier versions
+$output = json_encode($result,JSON_UNESCAPED_UNICODE);
+//if ($_GET["callback"]) {
+//  // Escape special characters to avoid XSS attacks via direct loads of this
+//  // page with a callback that contains HTML. This is a lot easier than validating
+//  // the callback name.
+//  $output = htmlspecialchars($_GET["callback"]) . "($output);";
+//}
+echo $output;
+
+
+-----Redis install-----
+一、Redis的下载地址
+Redis官方并没有提供Redis的windows安装包，但在github上， 有相关的下载地址，如下：
+https://github.com/ServiceStack/redis-windows/tree/master/downloads
+也可以到我的百度网盘下载，下载地址：http://pan.baidu.com/s/1gf2nuin，我下载的版本是redis-64.3.0.503.zip（64位的win系统，redis
+3.0版本）。
+二、Redis的安装和配置
+找到下载的压缩包 redis-64.3.0.503.zip，解压后，重命名为redis-3.0，置于某个文件夹下（如D:\Program Files）。
+1. 运行Redis服务器端
+直接双击D:\Program Files\redis-3.0目录下的redis-server.exe文件（redis服务器端），就会以窗口的形式运行Redis服务器（但该窗口不可关闭，否则，Redis服务不可用）。此种运行redis服务器的方式，没有加载指定的配置文件。
+2. 运行Redis客户端
+直接双击D:\Program Files\redis-3.0目录下的redis-cli.exe文件（redis客户端），如果显示127.0.0.1:6379> ，就说明客户端运行成功。
+输入命令： keys *
+查看所有的键
+如果提示“NOAUTH Authentication required.”，则说明Redis服务器设置了密码，请输入正确的密码后，再来进行其他操作。
+输入命令： auth 密码
+如果提示OK，就说明密码正确。
+Tips：可以将D:\Program Files\redis-3.0目录下的redis-server.exe发送到桌面快捷方式，便于以后快速打开Redis客户端。
+3. 将Redis服务安装到本地服务
+由于上述启动Redis服务器的方式有点复杂，且redis服务窗口不可关闭。故这里介绍如何将Redis服务安装到Windows系统的本地服务。
+复制D:\Program Files\redis-3.0目录下的redis.windows.conf文件，重命名为redis.conf，来作为redis的配置文件。
+打开win系统的命令行，依次输入下列命令：
+d: （回车，切换到d盘）
+cd Program Files\redis-3.0\ （回车，切换至D:\Program Files\redis-3.0目录）
+redis-server --service-install redis.conf --loglevel verbose （回车，安装redis本地服务，指定配置文件redis.conf）
+操作完成后，就可以到win系统的本地服务管理处，查看和操作Redis服务。（计算机图标右键 -> 管理） -> 服务和应用程序 -> 服务）
+4. 设置Redis密码
+编辑D:\Program Files\redis-3.0目录下的redis.conf配置文件，找到如下代码：
+# requirepass foobared
+将其复制一行，去掉前导的#注释符，将foobared改为你要设置的密码，如：
+requirepass test
+保存退出。
+重启Redis服务，配置文件就会生效。
+5. 如何卸载Redis本地服务
+打开win系统命令行，依次输入下列命令：
+d:
+cd Program Files\redis-3.0\
+redis-server --service-uninstall
+就可将Redis本地服务卸载。
+6. 安装Redis Desktop Manager
+Redis Desktop Manager是一个可视化的Redis数据库管理工具，使用非常简单，这里不做介绍。
+下载地址：http://pan.baidu.com/s/1i44AXal
+
+
+-----Mysql 定时事件-----
+如果你想控制某个事件的运行状态，可以这样：
+/*开启事件*/
+alter event 事件名 on completion preserve enable;
+/*关闭事件*/
+alter event 事件名 on completion preserve disable;
+如果你不知道你的mysql有没有开启时间功能的支持，可以通过以下语句查询：
+/*查看事件功能是否开启*/
+show variables like 'event_scheduler';
+查询表中value为 off 代表关，on 代表开。如果想开启事件功能，执行以下语句：
+/*开启事件功能*/
+set global event_scheduler = on;
+*******需要注意的是，event机制是mysql5.1版本开始引入的，这意味着版本低于5.1的可能无法使用。（希望对大家有帮助^_^）
+
+
+-----mysql 安装与授权-----
+mysqld --initialize
+mysqld install
+net start mysql
+mysqladmin -u root password
+
+授权
+bind_address
+grant all on *.* to root@'%' IDENTIFIED by 'root';
+FLUSH PRIVILEGES;
+
+
+-----apache 安装-----
+按照Win7系统64位环境下使用Apache——Apache2.2下载中所说的方式，下载Apache2.4的最新版，目前是2.4.33。
+一般下载下来就可以直接安装了，执行命令：
+httpd -k install -n apache2.4
+2 卸载
+之前在Win7系统64位环境下使用Apache——Apache2.2安装及常见问题解决中提到，如果想卸载系统，需要命令命令：
+将系统卸载，如下：
+sc delete apache2.4
+也可以使用命令：
+httpd -k uninstall -n apache2.4
+之后原有的apache2.4系统在“控制面板”的“服务”刷新一下就没有了：
+
+
+-----cmd run.bat-----
+@echo off
+echo Stopping nginx...
+taskkill /F /IM nginx.exe > nul
+echo Stopping PHP FastCGI...
+taskkill /F /IM php-cgi.exe > nul
+echo Stopping Apache2.4...
+taskkill /F /IM httpd.exe > nul
+
+echo Starting PHP5.6...
+echo Starting PHP7.14...
+echo Starting PHP7.17...
+cd C:\Windows\system\
+RunHiddenConsole.exe php-5.6.36-Win32-VC11-x64/php-cgi.exe -b 127.0.0.1:9000 -c php-5.6.36-Win32-VC11-x64/php.ini
+RunHiddenConsole.exe php-7.1.14-Win32-VC14-x64/php-cgi.exe -b 127.0.0.1:9001 -c php-7.1.14-Win32-VC14-x64/php.ini
+RunHiddenConsole.exe php-7.1.17-nts-Win32-VC14-x64/php-cgi.exe  -b 127.0.0.1:9002 -c php-7.1.17-nts-Win32-VC14-x64\php.ini
+echo Starting nginx...
+RunHiddenConsole.exe nginx-1.14.0/nginx.exe -p nginx-1.14.0
+echo Starting Apache2.4...
+RunHiddenConsole.exe Apache24/bin/httpd.exe
+
+
+magento 货币切换
+$special_price = $_product->getFinalPrice();
+$_taxHelper  = $this->helper('tax');
+$_finalPrice = $_taxHelper->getPrice($_product, $special_price);
+$_coreHelper = $this->helper('core');
+$price=$_coreHelper->currency($_finalPrice, true, false);
+
+获取magento用户收藏产品ID
+$customer =  Mage::getSingleton('customer/session')->getCustomer();
+$wishList = Mage::getModel('wishlist/wishlist')->loadByCustomer($customer);
+$wishListItemCollection = $wishList->getItemCollection();
+$arrProductIds = array();
+if (count($wishListItemCollection)) {
+    foreach ($wishListItemCollection as $item) {
+        $arrProductIds[] = $item->getProductId();
+      }
+}
+
+magento工具帮助
+http://www.veroella.com/product/manage.php?do=help
+magenprdxdb   KwlxuJYxk2w87Ldjs;psjddd
+ballm
+
+magento销售日志表
+sales_bestsellers_aggregated_daily, sales_bestsellers_aggregated_monthly, sales_bestsellers_aggregated_yearly
+清空表truncate table  `sales_bestsellers_aggregated_daily`;
+
+
+改善网速,解决网络受限
+1、运行gpedit.msc后，在左侧“计算机配置-管理模板-网络-QoS数据包计划程序“中双击”限制可保留带宽，选择“已启用”后把系统默认的80%改成0即可。
+2、cmd ->  netsh int tcp set global autotuninglevel=disabled
+
+cmd
+查看任务管理器进程
+1、tasklist
+2、wmic -> process get name
+终止进程
+  1、taskkill /f /t /im qq.exe
+  2、wmic process where name=“进程名称” call terminate
+  3、ntsd -c q -p [PID进程码]
+
+
+attrib 命令用来显示或更改文件属性。
+ATTRIB [+R | -R] [+A | -A ] [+S | -S] [+H | -H] [[drive:] [path] filename] [/S [/D]]
++ 设置属性。
+– 清除属性。
+R 只读文件属性。
+A 存档文件属性。
+S 系统文件属性。
+H 隐藏文件属性。
+[drive:][path][filename]
+指定要处理的文件属性。
+/S 处理当前文件夹及其子文件夹中的匹配文件。
+/D 也处理文件夹。
+
+regedit注册表
+1、重定向
+HKEY_LOCAL_MACHINE/SOFTWARE/Microsoft/Windows NT/CurrentVersion/Image File Execution Options
+2、开机启动
+HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Run
+Set R = CreateObject("WScript.Shell")
+R.RegWrite "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\bug","C:\bug.VBS"
+
+要学习的框架
+AngularJS
+Node.js
+React
+Bootstrap
+Apache Hadoop
+Apache Spark
+Cordova

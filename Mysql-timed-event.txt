@@ -1,0 +1,12 @@
+如果你想控制某个事件的运行状态，可以这样：
+/*开启事件*/
+alter event 事件名 on completion preserve enable;
+/*关闭事件*/
+alter event 事件名 on completion preserve disable;
+如果你不知道你的mysql有没有开启时间功能的支持，可以通过以下语句查询：
+/*查看事件功能是否开启*/
+show variables like 'event_scheduler';
+查询表中value为 off 代表关，on 代表开。如果想开启事件功能，执行以下语句：
+/*开启事件功能*/
+set global event_scheduler = on;
+*******需要注意的是，event机制是mysql5.1版本开始引入的，这意味着版本低于5.1的可能无法使用。（希望对大家有帮助^_^）

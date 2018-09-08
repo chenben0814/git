@@ -1,0 +1,3 @@
+bind_address
+grant all on *.* to root@'%' IDENTIFIED by 'root';
+FLUSH PRIVILEGES;

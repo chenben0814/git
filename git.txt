@@ -1,6 +1,16 @@
-Git is a version control system.
-Git is free software.
-ddsdasdsa
-dsdasdadad
-sssss
-ddddd
+Linux install
+sudo apt-get install git
+
+Windows install
+1 Git -> Git Bash 
+2 $ git config --global user.name "Your Name"
+  $ git config --global user.email "email@example.com"
+3 git init
+
+git add 
+git commit 
+
+ssh keys
+$ git remote add origin https://github.com/chenben0814/my-learning.git
+git push -u origin master
+git push origin master

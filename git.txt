@@ -9,7 +9,7 @@ Windows install
 
 git add  //使用 git add 命令添加新创建或修改的文件到本地的缓存区（Index）
 git status//此时可以使用 git status 命令查看当前 Git 仓库的状态
-git fiff //你可以使用 git diff 命令再加上 --cached 参数，看看缓存区中哪些文件被修改了 如果没有--cached参数，git diff 会显示当前你所有已做的但没有加入到缓存区里的修改。
+git diff //你可以使用 git diff 命令再加上 --cached 参数，看看缓存区中哪些文件被修改了 如果没有--cached参数，git diff 会显示当前你所有已做的但没有加入到缓存区里的修改。
 git commit //使用 git commit 命令提交到本地代码库 需要使用 -m 添加本次修改的注释，完成后就会记录一个新的项目版本。除了用 git add 命令，我们还可以用下面的 -a 参数将所有没有加到缓存区的修改也一起提交，但 -a 命令不会添加新建的文件。
 
 

@@ -5,13 +5,23 @@ Windows install
 1 Git -> Git Bash
 2 $ git config --global user.name "Your Name"
   $ git config --global user.email "email@example.com"
-3 git init
+3 git init  //初始化Git仓库
 
-git add
-git commit
+git add  //使用 git add 命令添加新创建或修改的文件到本地的缓存区（Index）
+git status//此时可以使用 git status 命令查看当前 Git 仓库的状态
+git fiff //你可以使用 git diff 命令再加上 --cached 参数，看看缓存区中哪些文件被修改了 如果没有--cached参数，git diff 会显示当前你所有已做的但没有加入到缓存区里的修改。
+git commit //使用 git commit 命令提交到本地代码库 需要使用 -m 添加本次修改的注释，完成后就会记录一个新的项目版本。除了用 git add 命令，我们还可以用下面的 -a 参数将所有没有加到缓存区的修改也一起提交，但 -a 命令不会添加新建的文件。
+
 
 ssh keys
 $ git remote rm origin
-$ git remote add origin https://github.com/chenben0814/my-learning.git
+$ git remote add origin https://github.com/chenben0814/my-learning.git //对于上述命令而言，git remote add 命令用于添加远程主机，origin 是主机名，此处我们可以自定义，不一定非要使用 origin
 git push -u origin master
 git push origin master
+
+
+git branch experimental //创建分支  git branch查看当前的分支列表
+git checkout experimental //输入 git checkout 分支名 可以切换到其他分支
+git checkout master //切换到master分支
+# 将experimental分支合并到master
+git merge -m 'merge experimental branch' experimental //-m 参数仍然是需要填写合并的注释信息。

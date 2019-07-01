@@ -57,6 +57,13 @@ $url = 'https://image.hebeos.com/media/catalog/product/7/2/72001-1.jpg';
     fwrite($fp,$return_content); //写入文件
 
 
+Girl Friend = new girl();
+girl.birthday ="1993/1/24";
+girl.Zodiac ="酉鸡";
+girl.Sex ="female";
+girl.Weight = "/";
+girl.welcomeWord ="Nice to meet you";
+while(life<end){love++;}
 
 Girl Baby = new girl();
 girl.birthday ="20XX/XX/XX 00:00:00";
@@ -76,7 +83,7 @@ boy.welcomeWord ="Hello World";
 很多问题搞不明白
 期待大神给我答案
 是我太菜
-还是PHP高峰实在难攀
+还是软件高峰实在难攀
 谁能给我指南
 想不明白
 想不明白
@@ -117,6 +124,7 @@ boy.welcomeWord ="Hello World";
 
 我确实真诚地喜欢过你，想过带你去看每年故宫的初雪，阿拉斯加的海岸线，我曾愿意与你两人独占一江秋，愿意与你郡亭枕上看潮头，铺着红地毯的礼堂，暮霭沉沉的原野，我都曾愿与你共享，我想象过和你一起生活，直到白发苍苍垂垂老矣，同枕共穴，至死不休。
 可我现在也确实不喜欢你了，车站年久失修，江南的砖瓦裂了缝，当初不撞南墙不回头的热血已然冷却。抱歉啦，我们就此别过吧，我的喜欢要给别的姑娘啦。 此生勿复见，山水不相逢。
+
 
 
 夜已深，天微凉，路过小巷见女郎
@@ -164,6 +172,33 @@ boy.welcomeWord ="Hello World";
 
 夜阑卧听风吹雨，铁马是你，冰河也是你。
 唯是相君忘未得，汉水是你，巴山也还是你。
+晓看天色暮看云，行也思君，坐也思君
+
+长相思兮长相忆，短相思兮无穷极
+如我爱上你 你的眼睛里都是我的宇宙
+
+
+生活本是平静的湖水
+因为与你相遇
+才泛起点点涟漪
+
+我遇见你有几分天意
+有几分宿命
+相识那一刻
+你给了我爱的理由
+往后余生
+我愿和你共有
+
+繁华的春
+热烈的夏
+收获的秋
+我都未曾辜负
+接下来凛冽的冬
+我愿用心头的暖阳融化
+只要你继续牵手
+我会陪你一起走
+
+
 
 https://www.visualstudio.com/downloads/ visual basic 下载
 
@@ -274,13 +309,15 @@ guacadmin  /  dKKIoaTlsbda&J77
 
 info.cern.ch  万维网1989 first-website   Tim Berners-Lee
 
+-----ajax select options------
+https://www.cnblogs.com/shandayuan/p/7463017.html
 
 ----快速检索----
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+//<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-<link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+//<link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
 <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+//<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script>
     $(function(){
              $( "#card" ).autocomplete({
@@ -509,3 +546,42 @@ Bootstrap
 Apache Hadoop
 Apache Spark
 Cordova
+
+正则表达式规则
+在正则表达式中，用*表示任意个字符（包括0个），用+表示至少一个字符，用?表示0个或1个字符，用{n}表示n个字符，用{n,m}表示n-m个字符
+
+
+magento 获取产品评论数 count($_reviews)
+$_reviews = Mage::getModel('review/review')->getResourceCollection();
+$_reviews->addStoreFilter( Mage::app()->getStore()->getId() )
+        ->addEntityFilter('product', $product->getId())
+        ->addStatusFilter( Mage_Review_Model_Review::STATUS_APPROVED )
+        ->setDateOrder()
+        ->addRateVotes();
+
+windows10下安装Linux子系统
+https://blog.csdn.net/qq_40098572/article/details/80884389
+
+PHP后端技术主要包括：
+web前端技术与PHP基础
+Linux
+MySQL
+PHP框架
+缓存技术和海量数据优化技术
+系统调优和负载均衡技术
+PHP后端工程师职业体系的5个阶段：
+初级
+相关基础：html，js，php，mysql；源码管理工具。可以胜任初级开发工作。
+中级
+Linux操作系统，PHP面向对象，PHP高级开发技术，PHP开发框架，PHP与公共API接口开发，PHP测试工具，此阶段可以独立完成开发工作。
+高级
+深入HTTP协议，PHP环境高级配置，MySQL优化技术，静态化和缓存技术，网站安全技术；目标：深入理解PHP开发环境，能胜任核心代码的编写工作。
+资深
+深入分析PHP框架源代码，深入学习PHP内核，NoSQL数据库，集群和负载均衡技术。目标：能对公司采用的技术框架提出改善意见，轻松实现核心组件，攻克技术难关。
+专家
+深入u学习Linux操作系统，多级缓存技术，海量数据优化技术，容灾技术，大型系统框架设计方法。目标：对整体需求方案提出精准描述，灵活运用PHP和相关技术对项目和产品进行设计，能进行技术指导。
+
+
+YouTube视频播放框架
+$href='T8ezkSG-EI4';
+$str='<iframe width="100%" height="100%" src="https://www.youtube.com/embed/'.$href.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';

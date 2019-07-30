@@ -36,6 +36,22 @@ header("Content-Disposition:attachment;filename=".$basename["basename"]);
 header("Content-Length:".filesize($filename));  //指定文件大小的
 readfile($filename);//将内容输出，以便下载。
 
+远程文件下载
+$url = Config::findOne(['name'=>'WEB_SITE_RESOURCES_URL'])->value."OA-introduction.doc";
+
+if (empty($url) || false === @fopen($url, 'rb')) {
+    exit('文件不存在');
+}
+// 文件在其他节点服务器
+$header = get_headers($url, 1);
+header('Content-Type: application/octet-stream');
+Header("Accept-Ranges: bytes");
+header('Content-Disposition: attachment; filename="' . basename($url) . '"');
+header('Content-Length: ' . $header['Content-Length']);
+readfile($url);
+exit;
+
+
 curl 图片下载
 $url = 'https://image.hebeos.com/media/catalog/product/7/2/72001-1.jpg';
     function http_get_data($url) {
@@ -584,4 +600,11 @@ Linux操作系统，PHP面向对象，PHP高级开发技术，PHP开发框架，
 
 YouTube视频播放框架
 $href='T8ezkSG-EI4';
-$str='<iframe width="100%" height="100%" src="https://www.youtube.com/embed/'.$href.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+$str='<iframe width="100%" height="100%" src="https://www.youtube.com/embed/'.$href.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';\
+
+
+UPDATE `catalog_product_option_title` a ,catalog_product_option b SET b.is_require=0 where a.option_id = b.option_id AND a.title IN ('Measurement Unit','Bust','Waist','Hips','Hollow to Floor','Height');
+
+
+docker学习
+版本控制方面
